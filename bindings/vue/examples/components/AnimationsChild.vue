@@ -24,15 +24,17 @@
       };
     },
 
-    ready() {
-      this.interval = setInterval(() => {
-        this.counter = this.counter - 1;
+    mounted: function () {
+      this.$nextTick(function () {
+        this.interval = setInterval(() => {
+          this.counter = this.counter - 1;
 
-        if (this.counter == 0) {
-          clearInterval(this.interval);
-          this.$pop();
-        }
-      }, 400);
+          if (this.counter == 0) {
+            clearInterval(this.interval);
+            this.$pop();
+          }
+        }, 400);
+      })
     },
 
     beforeDestroy() {

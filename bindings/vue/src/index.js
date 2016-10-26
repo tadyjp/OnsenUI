@@ -1,10 +1,10 @@
 export {
-  OnsNavigator,
-  OnsBackButton,
-  OnsTabbar,
-  OnsSwitch,
-  OnsPullHook,
-  OnsSplitterSide
+	OnsNavigator,
+	OnsBackButton,
+	OnsTabbar,
+	OnsSwitch,
+	OnsPullHook,
+	OnsSplitterSide
 } from './components';
 
 import ons from 'onsenui';
@@ -24,33 +24,35 @@ const install = (Vue, params = {}) => {
 	 */
 	registerComponents(Vue, params.components || {});
 
+	Vue.prototype._eventHub = new Vue()
+
 	/**
 	 * Push a page to parent Navigator.
 	 */
 	Vue.prototype.$push = function(options) {
-		this.$dispatch('push', options);
+		Vue.prototype._eventHub.$emit('push', options);
 	};
 
 	/**
 	 * Pop a page from the parent Navigator.
 	 */
 	Vue.prototype.$pop = function(options) {
-		this.$dispatch('pop', options);
+		Vue.prototype._eventHub.$emit('pop', options);
 	}
 
-  /**
-   * Expose notification methods.
-   */
-  Vue.prototype.$notification = ons.notification;
+	/**
+	 * Expose notification methods.
+	 */
+	Vue.prototype.$notification = ons.notification;
 
-  /**
-   * Expose platform methods.
-   */
-  Vue.prototype.$platform = ons.platform;
+	/**
+	 * Expose platform methods.
+	 */
+	Vue.prototype.$platform = ons.platform;
 };
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use({install});
+	window.Vue.use({install});
 }
 
 export default install;

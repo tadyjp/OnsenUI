@@ -4,6 +4,8 @@ import 'onsenui';
 import '../../../build/css/onsenui.css';
 import '../../../build/css/onsen-css-components.css';
 
+import './vue-filters'
+
 import VueOnsen from 'vue-onsenui';
 import {
   App,
@@ -35,6 +37,6 @@ Vue.use(VueOnsen, {
 });
 
 new Vue({
-  el: 'body',
-  components: {App}
+  el: '#app',
+  render: h => h(App)
 });

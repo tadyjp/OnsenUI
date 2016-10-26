@@ -25,7 +25,7 @@
         <ons-page>
           <ons-toolbar>
             <div class="left">
-              <ons-back-button @click="$pop()" label='Home'></ons-back-button>
+              <span @click="$pop"><ons-back-button label="Home"></ons-back-button></span>
             </div>
             <div class="center">Side menu</div>
           </ons-toolbar>

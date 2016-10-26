@@ -6,8 +6,8 @@
         'tab-bar--material__content': isAndroid
       }">
       <div
-        v-for="tab in tabs"
-        v-show="index === $index"
+        v-for="(tab, idx) in tabs"
+        v-show="index === idx"
         :is="tab.component">
       </div>
     </div>
@@ -21,12 +21,12 @@
         :class="{
           'tab-bar--material__item': isAndroid
         }"
-        v-for="tab in tabs">
+        v-for="(tab, idx) in tabs">
         <input
           type="radio"
-          :checked="$index === index"
-          @change="onChange($event, $index)"
-          name="tab-bar-{{ key }}">
+          :checked="idx === index"
+          @change="onChange($event, idx)"
+          :name="'tab-bar-' + key">
         <button
             class="tab-bar__button"
             :class="{
@@ -78,6 +78,13 @@
     created() {
       this.key = generateKey();
     },
+
+    // mounted: function () {
+    //   this.$nextTick(function () {
+    //     console.log(this.$el)
+    //     ons.compile(this.$el)
+    //   })
+    // },
 
     methods: {
       onChange(event, index) {

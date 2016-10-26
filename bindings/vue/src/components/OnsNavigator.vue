@@ -1,8 +1,8 @@
 <template>
-  <ons-navigator v-el:navigator>
+  <ons-navigator ref="navigator">
     <div
-      v-for="page in pages"
-      track-by="$index"
+      v-for="(page, index) in pages"
+      track-by="index"
       :is="page"
       @push="push"
       @pop="pop">
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+  import Vue from 'vue';
   const noop = () => {};
 
   export default {
@@ -23,10 +24,17 @@
 
     props: ['initialComponent'],
 
-    ready() {
-      if (this.initialComponent) {
-        this.pages = [this.initialComponent];
-      }
+    created: function () {
+      Vue.prototype._eventHub.$on('push', this.push)
+      Vue.prototype._eventHub.$on('pop', this.pop)
+    },
+
+    mounted: function () {
+      this.$nextTick(function () {
+        if (this.initialComponent) {
+          this.pages = [this.initialComponent];
+        }
+      })
     },
 
     methods: {
@@ -37,7 +45,7 @@
 
         this.pages = [...this.pages, component];
         this.isRunning = true;
-        this.$els.navigator
+        this.$refs.navigator
           ._pushPage(options)
           .catch(noop)
           .then(() => this.isRunning = false);
@@ -54,7 +62,7 @@
         };
 
         this.isRunning = true;
-        this.$els.navigator
+        this.$refs.navigator
           ._popPage(options, removePage)
           .catch(noop)
           .then(() => this.isRunning = false);

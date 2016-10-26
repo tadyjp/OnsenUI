@@ -5,7 +5,7 @@
         Speed dial
       </div>
       <div class="left">
-        <ons-back-button label="Home" @click="$pop()"></ons-back-button>
+        <span @click="$pop"><ons-back-button label="Home"></ons-back-button></span>
       </div>
     </ons-toolbar>
 

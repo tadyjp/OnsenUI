@@ -54,19 +54,19 @@
 
       <ons-list-header>Radio buttons</ons-list-header>
       <ons-list-item
-        v-for="vegetable in vegetables"
+        v-for="(vegetable, index) in vegetables"
         tappable
       >
         <label class="left">
           <ons-input
             type="radio"
-            input-id="radio-{{ $index }}"
-            :checked="vegetables[$index] == selectedVegetable"
-            @change="onVegetableChange($index)"
+            :input-id="'radio-' + index"
+            :checked="vegetables[index] == selectedVegetable"
+            @change="onVegetableChange(index)"
           >
           </ons-input>
         </label>
-        <label for="radio-{{ $index }}" class="center">
+        <label :for="'radio-' + index" class="center">
           {{ vegetable }}
         </label>
       </ons-list-item>
@@ -78,16 +78,16 @@
 
       <ons-list-header>Checkboxes</ons-list-header>
       <ons-list-item
-        v-for="color in colors"
+        v-for="(color, index) in colors"
       >
         <label class="left">
           <ons-input
             type="checkbox"
-            input-id="checkbox-{{ $index }}"
+            :input-id="'checkbox-' + index"
           >
           </ons-input>
         </label>
-        <label class="center" for="checkbox-{{ $index }}">
+        <label class="center" :for="'checkbox-' + index">
           {{ color }}
         </label>
       </ons-list-item>

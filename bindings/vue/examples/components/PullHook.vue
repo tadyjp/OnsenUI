@@ -5,7 +5,7 @@
         Pull to refresh
       </div>
       <div class="left">
-        <ons-back-button label="Home" @click="$pop()"></ons-back-button>
+        <span @click="$pop"><ons-back-button label="Home"></ons-back-button></span>
       </div>
     </ons-toolbar>
 
@@ -40,6 +40,7 @@
     OnsBackButton,
     OnsPullHook
   } from 'vue-onsenui';
+  import Vue from 'vue';
 
 	export default {
     data() {

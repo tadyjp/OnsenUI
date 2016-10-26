@@ -16,7 +16,7 @@
         v-for="animation in animations"
       >
         <div class="center">
-          {{ animation | capitalize }}
+          {{ animation | myCapitalize }}
         </div>
       </ons-list-item>
     </ons-list>

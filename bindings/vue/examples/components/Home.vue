@@ -9,7 +9,7 @@
         Components
       </ons-list-header>
       <ons-list-item
-        v-for="(component, label) in components"
+        v-for="(label, component) in components"
         tappable
         @click="$push({component: component})">
         <div class="center">
